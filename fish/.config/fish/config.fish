@@ -6,15 +6,11 @@ if command -q nix-your-shell
   nix-your-shell fish | source
 end
 
-
-#carapace
-set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-carapace _carapace | source
-
 zoxide init fish | source
 fzf --fish | source
 
 alias gc="git commit"
+alias ga="git add"
 alias gp="git pull"
 alias gP="git push"
 alias v="nvim"
