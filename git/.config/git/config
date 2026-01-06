@@ -1,0 +1,18 @@
+[core]
+	editor = "nvim"
+
+[diff]
+	tool = "vimdiff"
+
+[gpg]
+	format = "openpgp"
+
+[init]
+	defaultBranch = "main"
+
+[merge]
+	tool = "nvim"
+
+[user]
+	email = "w4rmek@proton.me"
+	name = "warmek"
