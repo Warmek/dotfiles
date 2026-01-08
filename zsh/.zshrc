@@ -25,7 +25,7 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 
 # Load completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit
 
 zinit cdreplay -q
 
