@@ -23,7 +23,7 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
-#
+
 # Load completions
 autoload -Uz compinit && compinit
 
@@ -53,6 +53,8 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 alias v='nvim'
 alias t='tmux'
+alias gp='git pull'
+alias gP='git push'
 
 # Shell integrations
 eval "$(fzf --zsh)"
