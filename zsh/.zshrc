@@ -51,6 +51,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
+alias la='ls -la'
 alias v='nvim'
 alias t='tmux'
 alias gp='git pull'
