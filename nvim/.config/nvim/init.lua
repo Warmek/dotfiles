@@ -355,7 +355,6 @@ require('lazy').setup({
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.git_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sc', builtin.git_status, { desc = '[S]earch [C]hanges' })
@@ -366,6 +365,15 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<Leader>sh', ':lua require"telescope.builtin".find_files({ hidden = true })<CR>', { noremap = true, silent = true })
+
+      vim.keymap.set('n', '<leader>sf', function()
+        vim.fn.system("git rev-parse --is-inside-work-tree")
+        if vim.v.shell_error == 0 then
+          builtin.git_files()
+        else
+          builtin.find_files()
+        end
+      end, { desc = '[S]earch [F]iles' })
 
       -- In your main config file or keymap file
       vim.keymap.set('n', '<leader>gd', function()
