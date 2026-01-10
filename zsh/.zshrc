@@ -1,4 +1,4 @@
-export PROFILING_MODE=1
+export PROFILING_MODE=0
 if [ $PROFILING_MODE -ne 0 ]; then
     zmodload zsh/zprof
     zsh_start_time=$(python3 -c 'import time; print(int(time.time() * 1000))')
@@ -21,13 +21,20 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
 fi
 
 # Add in zsh plugins
+zinit ice silent wait'!0'
 zinit light zsh-users/zsh-syntax-highlighting
+zinit ice silent wait'!0'
 zinit light zsh-users/zsh-completions
+zinit ice silent wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
+zinit ice silent wait'!0'
 zinit light Aloxaf/fzf-tab
 
+zinit ice silent wait'!0'
 zinit snippet OMZL::git.zsh
+zinit ice silent wait'!0'
 zinit snippet OMZP::git
+zinit ice silent wait'!0'
 zinit snippet OMZP::sudo
 
 # Load completions
