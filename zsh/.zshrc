@@ -1,3 +1,9 @@
+export PROFILING_MODE=1
+if [ $PROFILING_MODE -ne 0 ]; then
+    zmodload zsh/zprof
+    zsh_start_time=$(python3 -c 'import time; print(int(time.time() * 1000))')
+fi
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -25,7 +31,15 @@ zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 
 # Load completions
-autoload -Uz compinit && compinit
+_comp_files=($ZSH_CACHE_DIR/zsh/zcompcache(Nm-20))
+if (( $#_comp_files )); then
+  compinit -i -C -d "$ZSH_CACHE_DIR/zcompcache"
+else
+  compinit -i -d "$ZSH_CACHE_DIR/zcompcache"
+fi
+
+
+unset _comp_file
 
 zinit cdreplay -q
 
@@ -60,3 +74,10 @@ alias gP='git push'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
+
+# profiling
+if [ $PROFILING_MODE -ne 0 ]; then
+    zsh_end_time=$(python3 -c 'import time; print(int(time.time() * 1000))')
+    zprof
+    echo "Shell init time: $((zsh_end_time - zsh_start_time - 21)) ms"
+fi
