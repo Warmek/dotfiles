@@ -33,16 +33,16 @@ zinit snippet OMZP::git
 zinit ice silent wait'!0'
 zinit snippet OMZP::sudo
 
-autoload -Uz vcs_info
-precmd() { vcs_info }
+autoload -Uz add-zsh-hook vcs_info
+setopt PROMPT_SUBST
+add-zsh-hook precmd vcs_info
+PROMPT='%F{blue}%~%f %F{white}${vcs_info_msg_0_}%f%F{magenta} ❯%f '
 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr "*"
-zstyle ':vcs_info:*' unstagedstr "*"
-zstyle ':vcs_info:git:*' formats "%b%c"
-
-setopt PROMPT_SUBST
-PROMPT='%F{blue}%~%f %F{white}${vcs_info_msg_0_}%f%F{magenta}❯%f '
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats       '%b%u%c'
+zstyle ':vcs_info:git:*' actionformats '%b|%a%u%c'
 
 # Load completions
 _comp_files=($ZSH_CACHE_DIR/zsh/zcompcache(Nm-20))
