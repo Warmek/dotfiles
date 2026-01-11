@@ -36,10 +36,9 @@ zinit snippet OMZP::sudo
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
-zstyle ':vcs_info:git:*' check-for-changes true formats '%b %u%c'
 
 setopt PROMPT_SUBST
-PROMPT='%F{blue}%~%f %F{white}${vcs_info_msg_0_}%f%F{magenta}❯%f '
+PROMPT='%F{blue}%~%f %F{magenta}❯%f '
 
 # Load completions
 _comp_files=($ZSH_CACHE_DIR/zsh/zcompcache(Nm-20))
