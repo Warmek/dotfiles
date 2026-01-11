@@ -16,10 +16,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
-fi
-
 # Add in zsh plugins
 zinit ice silent wait'!0'
 zinit light zsh-users/zsh-syntax-highlighting
@@ -36,6 +32,14 @@ zinit ice silent wait'!0'
 zinit snippet OMZP::git
 zinit ice silent wait'!0'
 zinit snippet OMZP::sudo
+
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' check-for-changes true formats '%b %u%c'
+
+setopt PROMPT_SUBST
+PROMPT='%F{blue}%~%f %F{white}${vcs_info_msg_0_}%f%F{magenta}❯%f '
 
 # Load completions
 _comp_files=($ZSH_CACHE_DIR/zsh/zcompcache(Nm-20))
