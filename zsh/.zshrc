@@ -45,6 +45,8 @@ zstyle ':vcs_info:git:*' formats       '%b%u%c '
 zstyle ':vcs_info:git:*' actionformats '%b|%a%u%c '
 
 # Load completions
+autoload -Uz compinit
+
 _comp_files=($ZSH_CACHE_DIR/zsh/zcompcache(Nm-20))
 if (( $#_comp_files )); then
   compinit -i -C -d "$ZSH_CACHE_DIR/zcompcache"
