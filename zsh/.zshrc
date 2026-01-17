@@ -120,7 +120,7 @@ alias la='ls -la'
 alias v='nvim'
 alias t='tmux'
 alias gp='git pull'
-alias gp='git push'
+alias gP='git push'
 alias gch='fzf-git-checkout'
 alias gsb='fzf-git-branch'
 
