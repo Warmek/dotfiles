@@ -83,7 +83,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-# Aliases
 function fzf-git-branch() {
     git rev-parse HEAD > /dev/null 2>&1 || return
 
@@ -115,6 +114,7 @@ function fzf-git-checkout() {
     fi
 }
 
+# Aliases
 alias ls='ls --color'
 alias la='ls -la'
 alias v='nvim'
@@ -122,6 +122,7 @@ alias t='tmux'
 alias gp='git pull'
 alias gp='git push'
 alias gch='fzf-git-checkout'
+alias gsb='fzf-git-branch'
 
 # profiling
 if [ $PROFILING_MODE -ne 0 ]; then
