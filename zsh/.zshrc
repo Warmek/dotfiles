@@ -82,7 +82,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval $(keychain --eval --quiet id_rsa)
+eval "$(keychain --eval --quiet)"
 
 function fzf-git-branch() {
     git rev-parse HEAD > /dev/null 2>&1 || return
