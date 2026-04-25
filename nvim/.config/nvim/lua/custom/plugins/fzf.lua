@@ -50,8 +50,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
       --
       defaults = {
         results_title = true,
-        sorting_strategy = "ascending",
-        layout_strategy = "center",
+        sorting_strategy = 'ascending',
+        layout_strategy = 'center',
         layout_config = {
           preview_cutoff = 1, -- Preview should always show (unless previewer = false)
           width = function(_, max_columns, _)
@@ -62,6 +62,24 @@ return { -- Fuzzy Finder (files, lsp, etc)
           end,
         },
         border = false,
+        file_ignore_patterns = {
+          '^node_modules/',
+          '^%.git/',
+          '^%.cache/',
+          '%.lock$',
+          '%.env$',
+        },
+
+        vimgrep_arguments = {
+          'rg',
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--smart-case',
+          '--hidden',
+        },
       },
       extensions = {
         ['ui-select'] = {
@@ -96,14 +114,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
       { noremap = true, silent = true, desc = 'Look for [A]ll files' }
     )
 
-    vim.keymap.set('n', '<leader>lf', function()
-      vim.fn.system 'git rev-parse --is-inside-work-tree'
-      if vim.v.shell_error == 0 then
-        builtin.git_files()
-      else
-        builtin.find_files()
-      end
-    end, { desc = '[S]earch [F]iles' })
+    -- vim.keymap.set('n', '<leader>lf', builtin.find_files, { hidden = true, desc = '[S]earch [F]iles' })
+    vim.keymap.set(
+      'n',
+      '<Leader>lf',
+      ':lua require"telescope.builtin".find_files({ hidden = true })<CR>',
+      { noremap = true, silent = true, desc = '[S]earch [F]iles' }
+    )
 
     -- In your main config file or keymap file
     vim.keymap.set('n', '<leader>gd', function()
