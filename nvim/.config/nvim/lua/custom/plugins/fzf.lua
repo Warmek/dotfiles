@@ -92,8 +92,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>ld', builtin.diagnostics, { desc = '[L]ook for [D]iagnostics' })
     vim.keymap.set('n', '<leader>lb', builtin.git_branches, { desc = '[L]ook for [B]ranches' })
     vim.keymap.set('n', '<leader>lr', builtin.resume, { desc = '[L]ook for [R]esume' })
-    vim.keymap.set('n', '<leader>l.', builtin.oldfiles, { desc = '[L]ook for Recent Files ("." for repeat)' })
-    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+    -- vim.keymap.set('n', '<leader>l.', builtin.oldfiles, { desc = '[L]ook for Recent Files ("." for repeat)' })
+    vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ]Look for Recent Files ("." for repeat)' })
     vim.keymap.set(
       'n',
       '<leader>la',
