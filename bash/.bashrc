@@ -3,6 +3,9 @@ eval "$(starship init bash)"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 
+export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+source <(carapace _carapace)
+
 # Aliases
 alias ls='ls --color'
 alias la='ls -la'
