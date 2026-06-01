@@ -1,3 +1,6 @@
+# Load local secrets (not tracked in git)
+[ -f ~/.config/env/secrets.sh ] && source ~/.config/env/secrets.sh
+
 # Tools
 eval "$(starship init bash)"
 eval "$(fzf --bash)"
