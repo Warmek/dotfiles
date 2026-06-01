@@ -33,7 +33,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
           },
         },
         sorting_strategy = 'ascending',
-        border = false,
+        border = true,
         file_ignore_patterns = {
           '^node_modules/',
           '^%.git/',

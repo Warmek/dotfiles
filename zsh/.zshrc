@@ -131,3 +131,6 @@ if [ $PROFILING_MODE -ne 0 ]; then
     zprof
     echo "Shell init time: $((zsh_end_time - zsh_start_time - 21)) ms"
 fi
+
+# opencode
+export PATH=/home/warmek/.opencode/bin:$PATH

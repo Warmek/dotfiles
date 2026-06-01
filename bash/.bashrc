@@ -18,3 +18,7 @@ alias gP='git push'
 alias gch='fzf-git-checkout' # TODO: create function
 alias gsb='fzf-git-branch' # TODO: create function
 alias cd='z'
+
+# opencode
+export PATH=/home/warmek/.opencode/bin:$PATH
+
