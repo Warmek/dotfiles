@@ -1,4 +1,4 @@
-return {
-    'mbbill/undotree',
-    vim.keymap.set('n', '\\', vim.cmd.UndotreeToggle)
-};
+vim.pack.add {
+  'https://github.com/mbbill/undotree',
+}
+vim.keymap.set('n', '\\', vim.cmd.UndotreeToggle)

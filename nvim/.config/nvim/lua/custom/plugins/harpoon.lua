@@ -1,40 +1,30 @@
-return {
-  'ThePrimeagen/harpoon',
-  branch = 'harpoon2',
-  dependencies = { 'nvim-lua/plenary.nvim' },
-  config = function()
-    local harpoon = require 'harpoon'
+vim.pack.add({
+  {
+    src = 'https://github.com/vieitesss/miniharp.nvim',
+    version = vim.version.range("v*"),
+  }
+})
 
-    -- REQUIRED
-    harpoon:setup()
-    -- REQUIRED
+require('miniharp').setup({
+  autoload = true,
+  autosave = true,
+  show_on_autoload = false,
+  notifications = true, -- enable notification and status messages (default: true)
+  ui = {
+    position = 'center', -- 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+    show_hints = true, -- show close hints in the floating list (default: true)
+    enter = true, -- enter the floating window when it opens (default: true)
+  },
+})
 
-    vim.keymap.set('n', '<leader>a', function()
-      harpoon:list():add()
-      vim.api.nvim_echo({{'File added!', 'None'}}, false, {})    end)
-    vim.keymap.set('n', '<C-e>', function()
-      harpoon.ui:toggle_quick_menu(harpoon:list())
-    end)
+local miniharp = require('miniharp')
 
-    vim.keymap.set('n', '<C-h>', function()
-      harpoon:list():select(1)
-    end, { desc = 'Harpoon 1' })
-    vim.keymap.set('n', '<C-j>', function()
-      harpoon:list():select(2)
-    end, { desc = 'Harpoon 2' })
-    vim.keymap.set('n', '<C-k>', function()
-      harpoon:list():select(3)
-    end, { desc = 'Harpoon 3' })
-    vim.keymap.set('n', '<C-l>', function()
-      harpoon:list():select(4)
-    end, { desc = 'Harpoon 4' })
+vim.keymap.set('n', '<leader>a', miniharp.toggle_file, { desc = 'miniharp: toggle file mark' })
+vim.keymap.set('n', '<C-n>',     miniharp.next,        { desc = 'miniharp: next file mark' })
+vim.keymap.set('n', '<C-p>',     miniharp.prev,        { desc = 'miniharp: prev file mark' })
+vim.keymap.set('n', '<C-e>', miniharp.show_list,   { desc = 'miniharp: toggle marks list' })
 
-    -- Toggle previous & next buffers stored within Harpoon list
-    vim.keymap.set('n', '<C-S-P>', function()
-      harpoon:list():prev()
-    end)
-    vim.keymap.set('n', '<C-S-N>', function()
-      harpoon:list():next()
-    end)
-  end,
-}
+vim.keymap.set('n', '<C-h>', function() miniharp.go_to(1) end, { desc = 'miniharp: go to mark 1' })
+vim.keymap.set('n', '<C-j>', function() miniharp.go_to(2) end, { desc = 'miniharp: go to mark 2' })
+vim.keymap.set('n', '<C-k>', function() miniharp.go_to(3) end, { desc = 'miniharp: go to mark 3' })
+vim.keymap.set('n', '<C-l>', function() miniharp.go_to(4) end, { desc = 'miniharp: go to mark 4' })
