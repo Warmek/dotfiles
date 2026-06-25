@@ -24,4 +24,6 @@ alias cd='z'
 
 # opencode
 export PATH=/home/warmek/.opencode/bin:$PATH
-
+#
+# Add .NET Core SDK tools
+export PATH="$PATH:/home/warmek/.dotnet/tools"

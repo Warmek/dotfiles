@@ -347,7 +347,7 @@ do
   local servers = {
     gopls = {},
     pyright = {},
-    roslyn = {},
+    roslyn_ls = {},
 
     -- Some languages (like typescript) have entire language plugins that can be useful:
     --    https://github.com/pmizio/typescript-tools.nvim
@@ -410,6 +410,9 @@ do
     vim.lsp.enable(name)
   end
 end
+
+vim.lsp.config('roslyn', {})
+vim.lsp.enable('roslyn')
 
 do
   vim.pack.add { gh 'stevearc/conform.nvim' }
