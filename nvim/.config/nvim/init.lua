@@ -564,7 +564,7 @@ end
 -- kickstart.plugins.* examples
 -- ============================================================
 do
-  -- require 'kickstart.plugins.debug'
+  require 'kickstart.plugins.debug'
   require 'kickstart.plugins.indent_line'
   require 'kickstart.plugins.lint'
   require 'kickstart.plugins.autopairs'
