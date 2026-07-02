@@ -20,6 +20,10 @@ require('telescope').setup {
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'ui-select')
 
+vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "NONE" })
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "NONE" })
+
 -- See `:help telescope.builtin`
 local builtin = require 'telescope.builtin'
 vim.keymap.set('n', '<leader>lh', builtin.help_tags, { desc = '[L]ook for [H]elp' })
