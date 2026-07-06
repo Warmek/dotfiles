@@ -16,3 +16,5 @@
 [user]
 	email = "w4rmek@proton.me"
 	name = "warmek"
+[push]
+	autoSetupRemote = true
