@@ -489,6 +489,10 @@ do
   })
 end
 
+do
+  vim.pack.add { gh 'rafamadriz/friendly-snippets' }
+end
+
 -- ============================================================
 -- SECTION 10: OPTIONAL EXAMPLES / NEXT STEPS
 -- kickstart.plugins.* examples
