@@ -4,7 +4,7 @@ do
   vim.g.mapleader = ' '
   vim.g.maplocalleader = ' '
 
-  vim.g.have_nerd_font = false -- Set to true if you have a Nerd Font installed and selected in the terminal
+  vim.g.have_nerd_font = true -- Set to true if you have a Nerd Font installed and selected in the terminal
 
   vim.o.number = true
   vim.o.relativenumber = true
