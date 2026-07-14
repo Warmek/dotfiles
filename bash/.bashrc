@@ -6,6 +6,7 @@ eval "$(starship init bash)"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(keychain --eval --quiet)"
+eval "$(direnv hook bash)"
 
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 source <(carapace _carapace)
