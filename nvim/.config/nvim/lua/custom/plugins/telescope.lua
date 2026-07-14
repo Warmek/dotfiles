@@ -37,6 +37,7 @@ vim.keymap.set('n', '<leader>lr', builtin.resume, { desc = '[L]ook for [R]esume'
 vim.keymap.set('n', '<leader>l.', builtin.oldfiles, { desc = '[L]ook for Recent Files ("." for repeat)' })
 vim.keymap.set('n', '<leader>lc', builtin.commands, { desc = '[L]ook for [C]ommands' })
 vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>lb', builtin.git_branches, { desc = '[L]ook for [B]ranches' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('telescope-lsp-attach', { clear = true }),
