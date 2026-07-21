@@ -107,3 +107,7 @@ success_symbol = '[❯](bold purple)' # The 'success_symbol' segment is being se
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[cmd_duration]
+min_time=10_000
+show_notifications=true
