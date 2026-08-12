@@ -8,9 +8,6 @@ eval "$(zoxide init bash)"
 eval "$(keychain --eval --quiet)"
 eval "$(direnv hook bash)"
 
-export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
-source <(carapace _carapace)
-
 # Aliases
 alias ls='ls --color'
 alias la='ls -la'
@@ -25,7 +22,9 @@ alias gsb='fzf-git-branch' # TODO: create function
 alias cd='z'
 
 # opencode
-export PATH=/home/warmek/.opencode/bin:$PATH
+export PATH=/$HOME/.opencode/bin:$PATH
 #
 # Add .NET Core SDK tools
-export PATH="$PATH:/home/warmek/.dotnet/tools"
+export PATH="$HOME/.dotnet/tools:$PATH"
+
+export PATH="$HOME/.local/bin:$PATH"
