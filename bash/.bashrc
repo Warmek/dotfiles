@@ -21,15 +21,21 @@ alias gch='fzf-git-checkout'
 alias cd='z'
 
 fzf-git-checkout() {
+    if [ $# -gt 0 ]; then
+        git checkout "$@"
+        return
+    fi
+
     local branch
     branch=$(git branch --all --format='%(refname:short)' | \
              grep -v HEAD | \
-             fzf --multi \
-                 --preview 'git log -1 --oneline {}' \
+             fzf --preview 'git log -1 --oneline {}' \
                  --preview-window=right:50% \
-                 --header='Select branch to checkout (Tab to select, Enter to checkout)' \
-                 --bind='enter:become(echo {})') && \
-    git checkout "$branch"
+                 --header='Select branch to checkout')
+    
+    if [ -n "$branch" ]; then
+        git checkout "$branch"
+    fi
 }
 
 # opencode
