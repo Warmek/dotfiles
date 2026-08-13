@@ -344,7 +344,7 @@ do
 end
 
 vim.lsp.config('roslyn', {})
-vim.lsp.enable 'roslyn'
+vim.lsp.enable('roslyn')
 
 do
   vim.pack.add { gh 'stevearc/conform.nvim' }
