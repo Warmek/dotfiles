@@ -34,6 +34,7 @@ fzf-git-checkout() {
                  --header='Select branch to checkout')
     
     if [ -n "$branch" ]; then
+        branch="${branch#origin/}"
         git checkout "$branch"
     fi
 }
