@@ -22,9 +22,17 @@ local dapui = require 'dapui'
 
 require('mason-nvim-dap').setup {
   automatic_installation = true,
-  handlers = {},
+  handlers = {
+    netcoredbg = function(config)
+      config.adapters = {
+        type = 'executable',
+        command = config.adapters.command, -- resolved by mason-nvim-dap
+        args = { '--interpreter=vscode' },
+      }
+      require('mason-nvim-dap').default_setup(config)
+    end,
+  },
   ensure_installed = {
-    -- Update this to ensure that you have the debuggers for the langs you want
     'delve',
     'netcoredbg',
   },
@@ -69,5 +77,30 @@ dap.listeners.before.event_exited['dapui_config'] = dapui.close
 require('dap-go').setup {
   delve = {
     detached = vim.fn.has 'win32' == 0,
+  },
+}
+
+dap.configurations.cs = {
+  {
+    type = 'coreclr',
+    name = 'Attach to running process',
+    request = 'attach',
+    processId = require('dap.utils').pick_process,
+  },
+  {
+    type = 'coreclr',
+    name = 'Launch (with env from launchSettings.json)',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    env = function()
+      -- Optionally parse launchSettings.json here, or set manually:
+      return {
+        ASPNETCORE_ENVIRONMENT = 'Development',
+        -- add other vars as needed
+      }
+    end,
   },
 }
