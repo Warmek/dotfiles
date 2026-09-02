@@ -6,7 +6,6 @@ eval "$(starship init bash)"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash)"
 eval "$(keychain --eval --quiet)"
-eval "$(direnv hook bash)"
 
 # Aliases
 alias ls='ls --color'
