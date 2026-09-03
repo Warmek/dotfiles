@@ -532,7 +532,7 @@ do
   require 'kickstart.plugins.autopairs'
   require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
 
-  require 'custom.plugins'
+  require 'plugins'
 end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
