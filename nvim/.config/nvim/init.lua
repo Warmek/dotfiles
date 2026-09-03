@@ -346,11 +346,11 @@ end
 vim.lsp.config('roslyn', {
   settings = {
     ['csharp|background_analysis'] = {
-      dotnet_analyzer_diagnostics_scope = 'fullSolution',
+      dotnet_analyzer_diagnostics_scope = 'openFiles',
       dotnet_compiler_diagnostics_scope = 'fullSolution',
     },
     ['csharp|code_lens'] = {
-      dotnet_enable_references_code_lens = true,
+      dotnet_enable_references_code_lens = false,
     },
     ['csharp|completion'] = {
       dotnet_show_name_completion_suggestions = true,
