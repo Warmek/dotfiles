@@ -178,10 +178,10 @@ do
     },
   }
 
-  vim.pack.add {
-    { src = gh '/bluz71/vim-moonfly-colors', name = 'moonfly' },
-  }
-  vim.cmd.colorscheme 'moonfly'
+  -- vim.pack.add {
+  --   { src = gh '/bluz71/vim-moonfly-colors', name = 'moonfly' },
+  -- }
+  -- vim.cmd.colorscheme 'moonfly'
 
   vim.pack.add { gh 'folke/todo-comments.nvim' } -- Highlight todo, notes, etc in comments
   require('todo-comments').setup { signs = false }
