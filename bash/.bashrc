@@ -31,12 +31,16 @@ fzf-git-checkout() {
              fzf --preview 'git log -1 --oneline {}' \
                  --preview-window=right:50% \
                  --header='Select branch to checkout')
-    
+
     if [ -n "$branch" ]; then
         branch="${branch#origin/}"
         git checkout "$branch"
     fi
 }
+
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+    exec tmux new-session -A -s main
+fi
 
 # opencode
 export PATH=/$HOME/.opencode/bin:$PATH
