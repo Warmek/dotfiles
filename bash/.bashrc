@@ -18,6 +18,7 @@ alias gp='git pull'
 alias gP='git push'
 alias gch='fzf-git-checkout'
 alias cd='z'
+alias opencode='o'
 
 fzf-git-checkout() {
     if [ $# -gt 0 ]; then
@@ -38,12 +39,9 @@ fzf-git-checkout() {
     fi
 }
 
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#     exec tmux new-session -A -s main
-# fi
-
 # opencode
 export PATH=/$HOME/.opencode/bin:$PATH
+export OPENCODE_ENABLE_EXA=1
 #
 # Add .NET Core SDK tools
 export PATH="$HOME/.dotnet/tools:$PATH"
