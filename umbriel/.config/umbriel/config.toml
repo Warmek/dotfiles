@@ -124,6 +124,12 @@ enabled = true
 match.app_id = "^Alacritty$"
 default_scrolling_extent = 1.0
 
+[[window_rule]] # steam notification toasts
+match.title = "^notificationtoasts_.+_desktop"
+default_position = { x = 0, y = 0, anchor = "bottom_right" }
+default_focused = false
+default_pinned = true
+
 [[layer_rule]]
 match.namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$"
 blur = true
