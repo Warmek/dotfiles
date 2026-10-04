@@ -56,8 +56,8 @@ softness = 4
 enabled = true
 
 [keybinds]
-"Mod+Q" = "spawn:alacritty -e tmux"
-"Mod+Shift+Q" = "spawn:alacritty -e tmux a"
+"Mod+Q" = "spawn:alacritty -e tmux a"
+"Mod+Shift+Q" = "spawn:alacritty -e tmux"
 "Mod+W" = "spawn:zen"
 "Mod+Shift+W" = "spawn:zen --private-window"
 "Mod+C" = "window-close"
