@@ -12,13 +12,13 @@ alias ls='ls --color'
 alias la='ls -la'
 alias v='nvim'
 alias t='tmux'
+alias o='opencode'
 alias ga='git add'
 alias gc='git commit'
 alias gp='git pull'
 alias gP='git push'
 alias gch='fzf-git-checkout'
 alias cd='z'
-alias opencode='o'
 
 fzf-git-checkout() {
     if [ $# -gt 0 ]; then
