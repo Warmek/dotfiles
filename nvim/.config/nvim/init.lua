@@ -343,6 +343,15 @@ do
   end
 end
 
+vim.lsp.config('clangd', {
+  -- Prefer the system clangd (finds NixOS system headers); mason's prebuilt binary cannot.
+  cmd = {
+    vim.uv.fs_stat('/run/current-system/sw/bin/clangd') and '/run/current-system/sw/bin/clangd' or 'clangd',
+    '--background-index',
+  },
+})
+vim.lsp.enable 'clangd'
+
 vim.lsp.config('roslyn', {
   settings = {
     ['csharp|background_analysis'] = {
@@ -379,8 +388,8 @@ do
     format_on_save = function(bufnr)
       -- You can specify filetypes to autoformat on save here:
       local enabled_filetypes = {
-        -- lua = true,
-        -- python = true,
+        c = true,
+        cpp = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -393,6 +402,8 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      c = { 'clang-format' },
+      cpp = { 'clang-format' },
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
@@ -479,7 +490,7 @@ do
   -- NOTE: You can also specify a branch or a specific commit
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
-  local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'c_sharp' }
+  local parsers = { 'bash', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'c_sharp' }
   require('nvim-treesitter').install(parsers)
 
   local function treesitter_try_attach(buf, language)
