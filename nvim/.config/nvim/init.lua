@@ -348,9 +348,17 @@ do
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+  -- angularls is a superset of ts_ls (both attach to TS files, running both duplicates references/diagnostics)
+  local function in_angular_project()
+    return vim.uv.fs_stat(vim.fn.getcwd() .. '/angular.json') ~= nil
+        or vim.uv.fs_stat(vim.fn.getcwd() .. '/nx.json') ~= nil
+  end
+
   for name, server in pairs(servers) do
     vim.lsp.config(name, server)
-    vim.lsp.enable(name)
+    if name ~= 'ts_ls' or not in_angular_project() then
+      vim.lsp.enable(name)
+    end
   end
 end
 
