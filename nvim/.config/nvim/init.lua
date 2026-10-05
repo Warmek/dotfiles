@@ -287,6 +287,15 @@ do
 
     stylua = {}, -- Used to format Lua code
 
+    jsonls = {
+      settings = {
+        json = {
+          comments = 'allow', -- accept JSONC / comments
+        },
+      },
+    },
+    superhtml = {}, -- HTML LSP: completion, hover, linting
+
     -- Special Lua Config, as recommended by neovim help docs
     lua_ls = {
       on_init = function(client)
@@ -333,6 +342,8 @@ do
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
     -- You can add other tools here that you want Mason to install
+    'prettier', -- formats html / json / the whole web stack
+    'jsonlint', -- JSON linter (nvim-lint)
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -390,9 +401,35 @@ do
         c = true,
         cpp = true,
         c_sharp = true,
+        -- Prettier (web + config files)
+        html = true,
+        json = true,
+        jsonc = true,
+        css = true,
+        scss = true,
+        less = true,
+        javascript = true,
+        javascriptreact = true,
+        typescript = true,
+        typescriptreact = true,
+        yaml = true,
+        toml = true,
+        markdown = true,
+        markdown_inline = true,
+        vue = true,
+        svelte = true,
+        astro = true,
+        xml = true,
+        xhtml = true,
+        liquid = true,
+        twig = true,
+        hbs = true,
+        graphql = true,
+        gql = true,
+        php = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
-        return { timeout_ms = 500 }
+        return { timeout_ms = 2500 }
       else
         return nil
       end
@@ -400,20 +437,49 @@ do
     default_format_opts = {
       lsp_format = 'fallback', -- Use external formatters if configured below, otherwise use LSP formatting. Set to `false` to disable LSP formatting entirely.
     },
+    -- Pin Prettier to Mason's build: the built-in formatter resolves the project-local
+    -- node_modules/.bin/prettier first (v3.1.1 here, ~850ms per run), which is slower than
+    -- Mason's v3.9.9 (~510ms) and can exceed conform's timeout.
+    formatters = {
+      prettier = {
+        command = vim.fn.stdpath('data') .. '/mason/bin/prettier',
+        args = { '--stdin-filepath', '$FILENAME' },
+        cwd = require('conform.formatters.prettierd').cwd, -- same project root detection as the built-in
+      },
+    },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
       c = { 'clang-format' },
       cpp = { 'clang-format' },
-      -- rust = { 'rustfmt' },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use 'stop_after_first' to run the first available formatter from the list
-      -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      -- Prettier: one formatter for HTML, JSON and the rest of the web stack
+      html = { 'prettier' },
+      json = { 'prettier' },
+      jsonc = { 'prettier' },
+      css = { 'prettier' },
+      scss = { 'prettier' },
+      less = { 'prettier' },
+      javascript = { 'prettier' },
+      javascriptreact = { 'prettier' },
+      typescript = { 'prettier' },
+      typescriptreact = { 'prettier' },
+      yaml = { 'prettier' },
+      toml = { 'prettier' },
+      markdown = { 'prettier' },
+      vue = { 'prettier' },
+      svelte = { 'prettier' },
+      astro = { 'prettier' },
+      xml = { 'prettier' },
+      xhtml = { 'prettier' },
+      liquid = { 'prettier' },
+      twig = { 'prettier' },
+      hbs = { 'prettier' },
+      graphql = { 'prettier' },
+      gql = { 'prettier' },
+      php = { 'prettier' },
     },
   }
 
-  vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true } end, { desc = '[F]ormat buffer' })
+  vim.keymap.set({ 'n', 'v' }, '<leader>f', function() require('conform').format { async = true, timeout_ms = 2500 } end, { desc = '[F]ormat buffer' })
 end
 
 do
@@ -490,7 +556,7 @@ do
   -- NOTE: You can also specify a branch or a specific commit
   vim.pack.add { { src = gh 'nvim-treesitter/nvim-treesitter', version = 'main' } }
 
-  local parsers = { 'bash', 'c', 'cpp', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'c_sharp' }
+  local parsers = { 'bash', 'c', 'cpp', 'diff', 'html', 'json', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'c_sharp' }
   require('nvim-treesitter').install(parsers)
 
   local function treesitter_try_attach(buf, language)
