@@ -352,7 +352,7 @@ vim.lsp.config('clangd', {
 })
 vim.lsp.enable 'clangd'
 
-vim.lsp.config('roslyn', {
+vim.lsp.config('roslyn_ls', {
   settings = {
     ['csharp|background_analysis'] = {
       dotnet_analyzer_diagnostics_scope = 'openFiles',
@@ -379,7 +379,6 @@ vim.lsp.config('roslyn', {
     },
   },
 })
-vim.lsp.enable 'roslyn'
 
 do
   vim.pack.add { gh 'stevearc/conform.nvim' }
@@ -390,6 +389,7 @@ do
       local enabled_filetypes = {
         c = true,
         cpp = true,
+        c_sharp = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
