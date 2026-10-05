@@ -34,7 +34,7 @@ scale = 1.0
 vrr = "disabled"
 
 [output."eDP-1"]
-scale = 1.3
+scale = 1.5
 
 [layout]
 mode = "scrolling"
