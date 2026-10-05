@@ -126,7 +126,7 @@ enabled = true
 
 [[window_rule]]
 match.app_id = "^Alacritty$"
-default_scrolling_extent = 1.0
+default_scrolling_extent = 0.995
 
 [[window_rule]] # steam notification toasts
 match.title = "^notificationtoasts_.+_desktop"
