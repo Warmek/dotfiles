@@ -12,7 +12,7 @@
         "baseURL": "http://192.168.33.244:8080/v1"
       },
       "models": {
-        "unsloth/Qwen3.8-27B-GGUF:UD-Q2_K_XL": {
+        "Qwen3.8-27B": {
           "name": "Qwen3.8 (170k)",
           "limit": {
             "context": 170000,
@@ -20,7 +20,7 @@
           }
         },
         "qwen3.8-120k": {
-          "id": "unsloth/Qwen3.8-27B-GGUF:UD-Q2_K_XL",
+          "id": "Qwen3.8-27B",
           "name": "Qwen3.8 (120k)",
           "limit": {
             "context": 120000,
